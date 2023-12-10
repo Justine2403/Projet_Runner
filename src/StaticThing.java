@@ -1,6 +1,5 @@
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -12,16 +11,22 @@ public class StaticThing {
     public ImageView imageview = new ImageView();
 
     public double getSizeX() {
+
         return sizeX;
     }
 
     public double getSizeY() {
+
         return sizeY;
     }
 
     public void setImageview(String fileName) throws FileNotFoundException {
         Image image = new Image(new FileInputStream(fileName));
         imageview.setImage(image);
+    }
+
+    public ImageView getImageview() {
+        return imageview;
     }
 
     // Constructor

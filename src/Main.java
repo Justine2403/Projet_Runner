@@ -2,6 +2,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Group;
+import javafx.scene.Camera;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,10 +24,15 @@ public class Main extends Application {
                 primaryStage.setTitle("Runner");
                 Group root = new Group();
                 Pane pane = new Pane(root);
-                Scene theScene = new Scene(pane, 700, 400,true );
+                Scene theScene = new Scene(pane, 800, 400,true );
+
+                root.getChildren().add(GameScene.rightBackground.imageview);
+                root.getChildren().add(GameScene.leftBackground.imageview);
+                //root.getChildren().add(GameScene.hero.imageview);
+                //Camera camera = new PerspectiveCamera(true);
+                //theScene.setCamera(camera);
                 primaryStage.setScene(theScene);
-                root.getChildren().add(GameScene.right.imageview);
-                root.getChildren().add(GameScene.left.imageview);
+                GameScene.render();
                 primaryStage.show();
                 }
 

@@ -1,33 +1,68 @@
+import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class GameScene extends Scene{
+public class GameScene extends Scene {
+
+    //constructor
     public GameScene(Parent parent, double v, double v1, boolean b) throws FileNotFoundException {
         super(parent, v, v1, b);
     }
-    public static StaticThing right;
+
+    //int numberOfLives = 3;
+    static Camera camera = new Camera(0, 0);
+    public static StaticThing rightBackground;
 
     static {
         try {
-            right = new StaticThing(0,0,"..\\Runner_2\\img\\desert.png");
+            rightBackground = new StaticThing(800, 0, "..\\Runner_2\\img\\desert.png");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static StaticThing left;
+    public static StaticThing leftBackground;
 
     static {
         try {
-            left = new StaticThing(800, 0, "..\\Runner_2\\img\\desert.png" );
+            leftBackground = new StaticThing(0, 0, "..\\Runner_2\\img\\desert.png");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
-}
+
+    private static void update(long time) {
+    }
+
+    static Hero hero;
+
+    /*static {
+        try {
+            hero = new Hero(200, 300, 0,"..\\Runner_2\\img\\heros.png");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }*/
+
+    AnimationTimer timer = new AnimationTimer() {
+        public void handle(long time) {
+            hero.update(time);
+            camera.update(time);
+            GameScene.update(time);
+        }
+
+
+    };
+
+    //render method
+    public static void render() {
+        double cameraX = camera.getX();
+        double width = 800;
+        leftBackground.getImageview().setX(-cameraX);
+        rightBackground.getImageview().setX(width - cameraX);
+
+    }
+    }
 
 
