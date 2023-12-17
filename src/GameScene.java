@@ -3,6 +3,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.io.FileNotFoundException;
+import java.time.Duration;
 
 public class GameScene extends Scene {
     static final String BACKGROUND = "..\\Runner_2\\img\\desert.png";
@@ -13,21 +14,13 @@ public class GameScene extends Scene {
     //constructor
     public GameScene(Parent parent, double v, double v1, boolean b) throws FileNotFoundException {
         super(new Group(), v, v1, b);
+        Group root = (Group) getRoot();
         this.rightBackground = new StaticThing(800, 0, BACKGROUND);
         this.leftBackground = new StaticThing(0, 0, BACKGROUND);
         this.hero = new Hero(200, 300, HERO,0,  0, 6, 85, 100, 85, 0);
 
-        Group root = (Group) getRoot();
-        AnimationTimer timer = new AnimationTimer() {
-            public void handle(long time) {
-                hero.update(time);
-                camera.update(time);
-                GameScene.update(time);
-
-            }
-        };
-        timer.start();
         root.getChildren().add(parent);
+
     }
 
     //int numberOfLives = 3;

@@ -17,7 +17,7 @@ public class Main extends Application {
                 primaryStage.setTitle("Runner");
                 Group root = new Group();
                 Pane pane = new Pane(root);
-                GameScene gameScene = new GameScene(root, 800, 400,true );
+                GameScene gamescene = new GameScene(root, 800, 400,true );
 
                 Hero hero = new Hero(60, 250,  "..\\Runner_2\\img\\heros.png",0, 0, 6, 85, 100, 85,0);
 
@@ -27,7 +27,7 @@ public class Main extends Application {
 
                 root.getChildren().add(hero.getSprite());
 
-                primaryStage.setScene(gameScene);
+                primaryStage.setScene(gamescene);
                 GameScene.render();
                 primaryStage.show();
                 }
