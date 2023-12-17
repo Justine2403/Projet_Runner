@@ -39,9 +39,9 @@ public abstract class AnimatedThing {
         this.sprite.setY(y);
 
         // Set initial viewport to the first frame
-        this.sprite.setViewport(new Rectangle2D(offsetX * (index+1) + index * windowSizeX,(offsetY + windowSizeY) * attitude , windowSizeX, windowSizeY));    }
+        this.sprite.setViewport(new Rectangle2D(offsetX * (index) + index * windowSizeX,(offsetY + windowSizeY) * attitude , windowSizeX, windowSizeY));    }
 
-    public ImageView getImageView() {
+    public ImageView getSprite() {
         return sprite;
     }
 
@@ -86,7 +86,7 @@ public abstract class AnimatedThing {
     }
 
     // Add the updateAnimation method to handle the animation logic
-    public void updateAnimation() {
+    /*public void updateAnimation() {
         // Update the viewport to display the next frame
         updateViewport();
 
@@ -94,12 +94,12 @@ public abstract class AnimatedThing {
         setIndex((getIndex() + 1) % (getMaxIndex() + 1));
     }
     // Add the updateViewport method to set the correct viewport based on the current index
-    private void updateViewport() {
+    /*private void updateViewport() {
         double frameWidth = getWindowSizeX() / (getMaxIndex() + 1);
         double frameX = getOffsetX() * (getIndex() + 1) + getIndex() * frameWidth;
         double frameY = getOffsetY() + getWindowSizeY() * getAttitude();
-        getImageView().setViewport(new Rectangle2D(frameX, frameY, frameWidth, getWindowSizeY()));
-    }
+        getSprite().setViewport(new Rectangle2D(frameX, frameY, frameWidth, getWindowSizeY()));
+    }*/
 
 
 }

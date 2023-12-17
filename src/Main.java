@@ -14,27 +14,20 @@ public class Main extends Application {
         @Override
         public void start(Stage primaryStage) throws Exception{
 
-                /*Image spriteSheet = new Image(new FileInputStream("heros.png"));
-                //Image spriteBg = new Image(new FileInputStream("desert.png"));
-                ImageView sprite = new ImageView(spriteSheet);
-                sprite.setViewport(new Rectangle2D(20,0,65,100));
-                sprite.setX(200);
-                sprite.setY(300);*/
-
                 primaryStage.setTitle("Runner");
                 Group root = new Group();
                 Pane pane = new Pane(root);
-                Scene theScene = new Scene(pane, 800, 400,true );
+                GameScene gameScene = new GameScene(root, 800, 400,true );
 
-                Hero hero = new Hero(60, 250,  "..\\Runner_2\\img\\heros.png",0, 0, 7, 85, 100, 85,0);
+                Hero hero = new Hero(60, 250,  "..\\Runner_2\\img\\heros.png",0, 0, 6, 85, 100, 85,0);
 
 
                 root.getChildren().add(GameScene.rightBackground.imageview);
                 root.getChildren().add(GameScene.leftBackground.imageview);
 
-                root.getChildren().add(hero.getImageView());
+                root.getChildren().add(hero.getSprite());
 
-                primaryStage.setScene(theScene);
+                primaryStage.setScene(gameScene);
                 GameScene.render();
                 primaryStage.show();
                 }
