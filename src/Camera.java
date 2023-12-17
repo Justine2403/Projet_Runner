@@ -9,7 +9,7 @@ public class Camera {
         return x;
     }
 
-    public int getY(int y) {
+    public int getY() {
         return y;
     }
 

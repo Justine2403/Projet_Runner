@@ -26,11 +26,14 @@ public class Main extends Application {
                 Pane pane = new Pane(root);
                 Scene theScene = new Scene(pane, 800, 400,true );
 
+                Hero hero = new Hero(60, 250,  "..\\Runner_2\\img\\heros.png",0, 0, 7, 85, 100, 85,0);
+
+
                 root.getChildren().add(GameScene.rightBackground.imageview);
                 root.getChildren().add(GameScene.leftBackground.imageview);
-                //root.getChildren().add(GameScene.hero.imageview);
-                //Camera camera = new PerspectiveCamera(true);
-                //theScene.setCamera(camera);
+
+                root.getChildren().add(hero.getImageView());
+
                 primaryStage.setScene(theScene);
                 GameScene.render();
                 primaryStage.show();
