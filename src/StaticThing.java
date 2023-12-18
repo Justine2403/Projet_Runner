@@ -1,38 +1,30 @@
-import javafx.scene.image.Image;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 
 public class StaticThing {
-    // Display static element like background and nbr life
-    double sizeX;
-    double sizeY;
-    public ImageView imageview = new ImageView();
+    private double sizeX;
+    private double sizeY;
+    public ImageView imageview;
 
+    // Setter
+    public void setImageview(String fileName) {
+        imageview = new ImageView(fileName);
+    }
+
+    // Constructeur
+    public StaticThing(double sizeX, double sizeY, String fileName) {
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        setImageview(fileName);
+    }
+
+    // Getter
     public double getSizeX() {
-
         return sizeX;
     }
 
     public double getSizeY() {
-
         return sizeY;
-    }
-
-    public void setImageview(String fileName) throws FileNotFoundException {
-        Image image = new Image(new FileInputStream(fileName));
-        imageview.setImage(image);
-    }
-
-    public ImageView getImageview() {
-        return imageview;
-    }
-
-    // Constructor
-    public StaticThing(double sizeX, double sizeY, String fileName) throws FileNotFoundException {
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
-        setImageview(fileName);
     }
 }

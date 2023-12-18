@@ -1,38 +1,30 @@
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.Group;
-import javafx.scene.Camera;
-import javafx.scene.PerspectiveCamera;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.geometry.Rectangle2D;
-import java.io.FileInputStream;
+import javafx.stage.Stage;
 
 public class Main extends Application {
-        @Override
-        public void start(Stage primaryStage) throws Exception{
+        public void start(Stage primaryStage) {
+
+                GameScene.timer.start();
 
                 primaryStage.setTitle("Runner");
                 Group root = new Group();
                 Pane pane = new Pane(root);
-                GameScene gamescene = new GameScene(root, 800, 400,true );
-
-                Hero hero = new Hero(60, 250,  "..\\Runner_2\\img\\heros.png",0, 0, 6, 85, 100, 85,0);
-
-
-                root.getChildren().add(GameScene.rightBackground.imageview);
-                root.getChildren().add(GameScene.leftBackground.imageview);
-
-                root.getChildren().add(hero.getSprite());
-
-                primaryStage.setScene(gamescene);
-                GameScene.render();
+                Scene scene = new Scene(pane, 800, 400);
+                primaryStage.setScene(scene);
                 primaryStage.show();
-                }
 
+                // Affichage des éléments
+                root.getChildren().add(GameScene.leftBackground.imageview);
+                root.getChildren().add(GameScene.rightBackground.imageview);
+                root.getChildren().add(GameScene.life_bar.imageview);
+                root.getChildren().add(GameScene.heroRun.sprite);
+
+        }
         public static void main(String[] args) {
-        launch(args);
+                launch(args);
         }
 }
+     
