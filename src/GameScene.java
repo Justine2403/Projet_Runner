@@ -5,8 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class GameScene extends Scene {
-    public static StaticThing leftBackground = new StaticThing(0,0,"file:img\\desert.png");   // instanciation de 2 staticThing pour afficher le background
-    public static StaticThing rightBackground = new StaticThing(800,0,"file:img\\desert.png");   // instanciation de 2 staticThing pour afficher le background);
+    public static StaticThing leftBackground = new StaticThing(0,0,"file:img\\desert.png"); 
+    public static StaticThing rightBackground = new StaticThing(800,0,"file:img\\desert.png");
     public static StaticThing life_bar = new StaticThing(15,100,"file:img\\life_bar.png");
     public static Hero heroRun = new Hero(100,255,1,0,425,10,100,"file:img\\cat.png");
 
