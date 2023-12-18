@@ -1,3 +1,4 @@
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 
 public abstract class AnimatedThing {
@@ -5,11 +6,11 @@ public abstract class AnimatedThing {
     private double y;
     public ImageView sprite;
     private int attitude;
-    private int index;      // index
-    private int maxIndex;   // indice max
-    private double windowSizeX;    // longueur de la fenêtre
-    private double windowSizeY;    // hauteur de la fenêtre
-    private static double offsetX, offsetY;  // offset entre chaque frame
+    private int index;
+    private int maxIndex;
+    private double sizeX;
+    private double sizeY;
+    private static double offsetX, offsetY;
 
     // Setter
     public void setImageview(String fileName) {
@@ -25,14 +26,14 @@ public abstract class AnimatedThing {
     }
 
     // Constructeur
-    public AnimatedThing(double x, double y, int attitude, int index, int maxIndex, double windowSizeX, double windowSizeY, String fileName) {
+    public AnimatedThing(double x, double y, int attitude, int index, int maxIndex, double sizeX, double sizeY, String fileName) {
         this.x = x;
         this.y = y;
         this.attitude = attitude;
         this.index = index;
         this.maxIndex = maxIndex;
-        this.windowSizeX = windowSizeX;
-        this.windowSizeY = windowSizeY;
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
         setImageview(fileName);
     }
 
@@ -57,15 +58,55 @@ public abstract class AnimatedThing {
         return attitude;
     }
 
+    public void jumpUp() {
+        this.setAttitude(2);
+        this.setIndex(0); //frame index to jump up
+        this.sprite.setViewport(new Rectangle2D(this.getIndex(), 160, 75, 100));
+        this.sprite.setX(this.getX());
+        this.sprite.setY(this.getY() - 20); //position of the jump
+    }
+
+    public void jumpDown() {
+        this.setAttitude(3);
+        this.setIndex(85); //frame index to jump down
+        this.sprite.setViewport(new Rectangle2D(this.getIndex(), 160, 75, 100));
+        this.sprite.setX(this.getX());
+        this.sprite.setY(this.getY()); //initial position before jump
+    }
+
     //Update method for hero animations
     public void update(long time) {
-        //Call the heroRun method from GameScene class
-        GameScene.heroRun();
-        if (this.index < this.maxIndex) {
-            this.index = this.index + 85; //Go to next frame by incrementing
-        } else {
-            this.index = 0; //Go to first frame
+        // Attitude 1: hero is running
+        if (this.attitude == 1) {
+            GameScene.heroRun();
+            if (this.index < this.maxIndex) {
+                this.index = this.index + 85;
+            } else {
+                this.index = 0;
+            }
+        }
 
+        // Attitude 2: hero is jumping up
+        if (this.attitude == 2) {
+            GameScene.heroRun.jumpUp();
+            this.y = this.y - 10; //go up
+            if (this.y <= 100) {
+                this.setAttitude(3); //change attitude when reaching certain position
+            }
+        }
+
+        // Attitude 3: hero is jumping down
+        if (this.attitude == 3) {
+            GameScene.heroRun.jumpDown();
+            //255 is the value when it reachs the ground
+            //air
+            if (this.y <= 255) {
+                this.y = this.y + 10; //go down
+            }
+            //ground
+            if (this.y >= 255) {
+                this.setAttitude(1); //set to running attitude if character on ground
+            }
         }
     }
 }

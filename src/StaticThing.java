@@ -12,7 +12,7 @@ public class StaticThing {
         imageview = new ImageView(fileName);
     }
 
-    // Constructeur
+    // Constructor
     public StaticThing(double sizeX, double sizeY, String fileName) {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
@@ -26,5 +26,17 @@ public class StaticThing {
 
     public double getSizeY() {
         return sizeY;
+    }
+
+    //Background animation
+    public void update(long time){
+        // Check if the x-coordinate of the background
+        if (this.sizeX <= -875){
+            this.sizeX = 700;       //Reset and create a loop effect
+        }
+        else {
+            this.sizeX = this.sizeX - 25;
+        }
+        GameScene.background();
     }
 }
