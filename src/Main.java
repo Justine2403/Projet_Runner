@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -11,6 +12,7 @@ public class Main extends Application {
                 GameScene.timer.start();
 
                 primaryStage.setTitle("Runner");
+                primaryStage.getIcons().add(new Image("file:img/cat1.png"));
                 Group root = new Group();
                 Pane pane = new Pane(root);
                 Scene scene = new Scene(pane, 800, 400);
